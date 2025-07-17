@@ -1,0 +1,208 @@
+<!--Horizon Hotels aboutUsPage.html 
+***REMOVED***
+***REMOVED*** 
+-->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+<div class="aboutUsPageBody">
+
+    <!--Navbar-->
+
+    <header>
+
+        <!--Skip nav link for accessability-->
+
+        <a class="skipNavLink" href="#main-content">
+            skip navigation
+        </a>
+
+        <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+        <h3 class="headerBrandName">HORIZON HOTELS</h3>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                {% if account_type == 'guest' %}
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="loginPage">Login/Register</a></li>
+                {% endif %} 
+
+                {% if account_type == 'standard' %}
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="basketPage">Basket</a></li>
+                <li><a href="userAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+                {% endif %} 
+
+                {% if account_type == 'admin' %}
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="adminAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+                {% endif %} 
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <main id="main-content">
+
+    <!--Gap/Space beneath nav-->
+    <div class="navGap"><br></div>
+        
+    <section class="aboutUsSection">
+        <h1>About Us</h1>
+        <p>
+            With Horizon Hotels, first class travel accommodation can be found at some of the most competitively affordable prices all over the world. Combining supreme comfort with the most important travel essentials conveniently taken care of all at the click of a button, travelling to new horizons is made safe & hassle free. 
+        </p>
+        <p>
+            We strive to offer all of our hotel guests the most up-to-date information & secure, high-quality facilities to ensure they feel welcome, relaxed & are experiencing their stay their way.   
+        </p>
+        <p>
+            All of our hotel locations are situated with you in mind. Near to essential shops & public travel to local tourist hotspots, whilst also far enough away from the hussle & bustle to afford privacy & a feeling of stepping away from ordinary life & into nature.
+        </p>
+    </section>
+    <section class="aboutUsPoints">
+        <div>
+            <h2>WiFi</h2>
+            <p>Super fast, free & reliable wifi service</p>
+        </div>
+        <div>
+            <h2>24/7 Security</h2>
+            <p>CCTV Surveillance</p>
+            <p>Secure door entry systems</p>
+        </div>
+        <div>
+            <h2>Facilities</h2>
+            <p>24/7 reception</p>
+            <p>Bar & restuarant</p>
+            <p>Cafe</p>
+            <p>Gym</p>
+            <p>Private parking</p>
+        </div>
+    </section>
+    <section class="aboutUsSection">
+        <h1 class="bookingInfoHeader">Booking Information</h1>
+        <h2 class="bookingInfoHeader2">Discounts For Booking In Advance</h2>
+        <p class="bookingInfo">
+            Stays may be booked up to 3 months in advance for which discounts will be applied accordingly:
+        </p>
+        <table>
+            <tr>
+                <th>NUMBER OF DAYS <br> BOOKED IN ADVANCE</th>
+                <th>DISCOUNT ON TOTAL <br> BOOKING PRICE</th>
+            </tr>
+            <tr>
+                <td>Between 80 and 90 Days</td>
+                <td>20% Discount</td>
+            </tr>
+            <tr>
+                <td>Between 60 and 79 Days</td>
+                <td>10% Discount</td>
+            </tr>
+            <tr>
+                <td>Between 45 and 59 Days</td>
+                <td>5% Discount</td>
+            </tr>
+            <tr>
+                <td>Under 45 Days</td>
+                <td>No Discount</td>
+            </tr>
+        </table>
+        <h2 class="bookingInfoHeader2">Cancellations</h2>
+        <p class="bookingInfo">
+            Cancellation charges will be applied accordingly: 
+        </p>
+        <table>
+            <tr>
+                <th>NUMBER OF DAYS BEFORE <br> BOOKED ARRIVAL DATE</th>
+                <th>CANCELLATION <br> CHARGE</th>
+            </tr>
+            <tr>
+                <td>Cancellation 60 <br> Days Before Arrival Date</td>
+                <td>Zero Charges Incurred</td>
+            </tr>
+            <tr>
+                <td>Cancellation Between 30 and 60 <br> Days Before Arrival Date</td>
+                <td>Up to 50% of Total Booking Price</td>
+            </tr>
+            <tr>
+                <td>Cancellation Within 30 <br> Days of Arrival Date</td>
+                <td>100% of Total Booking Price</td>
+            </tr>
+        </table>
+        <h2 class="bookingInfoHeader2">Rooms</h2>
+        <p class="bookingInfo">
+            Our hotels provide 3 different room types for which different prices are charged. Prices and maximum guest capacity per room are displayed in the following table: 
+        </p>
+        <table>
+            <tr>
+                <th>ROOM TYPE</th>
+                <th>GUEST CAPACITY</th>
+                <th>ROOM CHARGES</th>
+            </tr>
+            <tr>
+                <td>Standard Room</td>
+                <td>Holds 1 Guest</td>
+                <td>Standard/Base Price</td>
+            </tr>
+            <tr>
+                <td>Double Room</td>
+                <td>Holds up to 2 Guests</td>
+                <td>For 1 Guest: <br> Standard/Base Price + 20% <br><br> For 2 Guests: <br> Standard/Base Price + 30% </td>
+            </tr>
+            <tr>
+                <td>Family Room</td>
+                <td>Holds up to 6 Guests</td>
+                <td>Standard/Base Price + 50%</td>
+            </tr>
+        </table>
+    </section>
+    <section class="aboutUsSection">
+        <h1 class="bookingInfoHeader">Privacy Policy</h1>
+        <p>
+            By registering an account with Horizon Hotels you are agreeing to the collection and use of your data. A full description of how we collect and use your data, as well as how you can access it has been provided below.   
+        </p>
+    </section>
+    <section class="aboutUsPoints">
+        <h2 class="bookingInfoHeader2">What personal data do we collect?</h2>
+        <p>
+            Information about you is collected during the registration and payment processes. E.g. Details you have entered such as your name, email address, card details, etc.     
+        </p>
+        <h2 class="bookingInfoHeader2">How do we use your data?</h2>
+        <p class="bookingInfo">
+            Collected information is used for the following purposes:
+            <ul>
+                <li>For the registration and management of your account with us</li>
+                <li>To process booking payments</li>
+                <li>For communication and response to any queries or requests you may have</li>
+            </ul>
+        </p>
+        <h2 class="bookingInfoHeader2">How can you access the information we have stored about you?</h2>
+        <p>
+            It is your legal right to have access to a copy and/or request deletion or correction of any personal data we hold on you. For a copy of your data, you may email us at personal-data-enquiries@horizonhotels.com 
+        </p>
+        <h2 class="bookingInfoHeader2">Where do we store your information and for how long?</h2>
+        <p>
+            All collected personal information is securely stored within our databases and only held for as long as it is necessary in order to deliver the services for which you have requested from us.     
+        </p>
+        <h2 class="bookingInfoHeader2">How do we protect your data?</h2>
+        <p>
+            Sensitive personal information is stored within our secure databases. Where possible, data that need not be stored, such as bank card numbers, are processed once and not stored. Passwords are also hashed and thus, cannot be stolen and reused. This further prevents unauthorized access to your account or any of your details.  
+        </p>
+    </section>
+    <div class="aboutUsBottomGap"></div>
+
+</div>
+
+{% endblock %}
+    

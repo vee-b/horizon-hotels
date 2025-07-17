@@ -1,0 +1,144 @@
+<!--Horizon Hotels adminBookingDetailsPage.html 
+***REMOVED***
+***REMOVED*** -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+<div class="aboutUsPageBody">
+
+    <!--Navbar-->
+
+    <header>
+
+        <!--Skip nav link for accessability-->
+
+        <a class="skipNavLink" href="#main-content">
+            skip navigation
+        </a>
+
+        <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+        <h3 class="headerBrandName">HORIZON HOTELS</h3>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="adminAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <main id="main-content">
+
+    <!--Gap/Space beneath nav-->
+    <div class="navGap"><br></div>
+        
+    <section class="aboutUsSection">
+        <h1 class="bookingInfoHeader">Booking #{{booking_id}}</h1>
+        
+        <table>
+            <tr>
+                <th>HOTEL ID:</th>
+                <td>#{{hotel_id}}</td>
+            </tr>
+            <tr>
+                <th>ACCOUNT HOLDER ID:</th>
+                <td>#{{account_holder_id}}</td>
+            </tr>
+            <tr>
+                <th>STANDARD ROOMS:</th>
+                <td>{{standard}}</td>
+            </tr>
+            <tr>
+                <th>DOUBLE ROOMS (1 Guest):</th>
+                <td>{{double}}</td>
+            </tr>
+            <tr>
+                <th>DOUBLE ROOMS (2 Guests):</th>
+                <td>{{double2}}</td>
+            </tr>
+            <tr>
+                <th>FAMILY ROOMS:</th>
+                <td>{{family}}</td>
+            </tr>
+            <tr>
+                <th>RESERVATION DATE:</th>
+                <td>{{reservation_date}}</td>
+            </tr>
+            <tr>
+                <th>CHECK-IN DATE:</th>
+                <td>{{check_in}}</td>
+            </tr>
+            <tr>
+                <th>CHECK-OUT DATE:</th>
+                <td>{{check_out}}</td>
+            </tr>
+            <tr>
+                <th>TOTAL NIGHTS BOOKED:</th>
+                <td>{{total_nights}}</td>
+            </tr>
+            {% if currency == 'gbp' %}
+                <tr>
+                    <th>TOTAL COST (Before Discount):</th>
+                    <td>£{{total_cost_no_discount}}0</td>
+                </tr>
+                <tr>
+                    <th>TOTAL COST (Discount Applied):</th>
+                    <td>£{{total_cost_discounted}}0</td>
+                </tr>
+            {% endif %}
+            {% if currency == 'usd' %}
+                <tr>
+                    <th>TOTAL COST (Before Discount):</th>
+                    <td>${{total_cost_no_discount}}0</td>
+                </tr>
+                <tr>
+                    <th>TOTAL COST (Discount Applied):</th>
+                    <td>${{total_cost_discounted}}0</td>
+                </tr>
+            {% endif %}
+            {% if currency == 'euro' %}
+                <tr>
+                    <th>TOTAL COST (Before Discount):</th>
+                    <td>&euro;{{total_cost_no_discount}}0</td>
+                </tr>
+                <tr>
+                    <th>TOTAL COST (Discount Applied):</th>
+                    <td>&euro;{{total_cost_discounted}}0</td>
+                </tr>
+            {% endif %}
+        </table>
+
+        <div class="cancel_button_div">
+            <form method="post" action="/adminDeleteBookingPage">
+                <input type="hidden" name="booking_id" value="{{booking_id}}">
+                <input type="hidden" name="hotel_id" value="{{hotel_id}}">
+                <button type="submit" onclick="confirm_admin_changes()" class="cancel_booking">Delete Booking</button>
+            </form>
+        </div>
+
+    <div class="aboutUsBottomGap"></div>
+
+</div>
+
+
+<script>
+    function confirm_admin_changes() {
+        var result = confirm('Are you sure you would like to delete this booking?')
+        if (result == false) {
+            event.preventDefault();
+        }
+    }
+</script>
+
+{% endblock %}
+    

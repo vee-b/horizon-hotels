@@ -1,0 +1,52 @@
+<!--Horizon Hotels adminDeleteBookingPage.html 
+***REMOVED***
+***REMOVED*** -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+<div class="paymentConfirmationPageBody">
+    <!--Navbar-->
+
+    <header>
+
+        <!--Skip nav link for accessability-->
+
+        <a class="skipNavLink" href="#main-content">
+            skip navigation
+        </a>
+
+        <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+        <h3 class="headerBrandName">HORIZON HOTELS</h3>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="adminAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <main id="main-content">
+
+    <!--Gap/Space beneath nav-->
+    <div class="navGap"><br></div>
+
+    <section class="searchArea">
+	    <h1>Booking #{{booking_id}} Has Been Deleted</h1>
+    </section>
+
+    </main>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,60 @@
+<!--Horizon Hotels loginPage.html 
+***REMOVED***
+***REMOVED*** -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+    <div class="loginRegisterPageBody">
+        <!--Navbar-->
+
+        <header>
+
+            <!--Skip nav link for accessability-->
+
+            <a class="skipNavLink" href="#main-content">
+                skip navigation
+            </a>
+
+            <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+            <h3 class="headerBrandName">HORIZON HOTELS</h3>
+            <input type="checkbox" id="nav-toggle" class="nav-toggle">
+            <nav>
+                <ul>
+                    <li><a href="searchPage">Search</a></li>
+                    <li><a href="aboutUsPage">About Us</a></li>
+                    <li><a href="loginPage">Login/Register</a></li>
+                </ul>
+            </nav>
+            <label for="nav-toggle" class="nav-toggle-label">
+                <span></span>
+            </label>
+        </header>
+
+        <main id="main-content">
+
+        <!--Gap/Space beneath nav-->
+        <div class="navGap"><br></div>
+
+        <div class="loginRegisterFormDiv">
+            <form class="loginRegisterForm" action="/loginPage" method="POST">
+                <div class="action">
+                    <a class="line" style="display: inline;" href="loginPage">Login</a>
+                    <a style="display: inline;" href="registerPage">Register</a>
+                </div>
+                <div>
+                    <p class="error_message" id="email_error_message">{{email_***REMOVED***_html}}</p>
+                    <input type="email" placeholder="Email" id="email" name="email" required/>
+                    <input type="***REMOVED***" placeholder="Password" id="***REMOVED***" name="***REMOVED***" required/>
+                    <button>Login</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+{% endblock %}

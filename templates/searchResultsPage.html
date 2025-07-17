@@ -1,0 +1,147 @@
+<!--Horizon Hotels searchPage.html 
+***REMOVED***
+***REMOVED*** -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+    <!--Navbar-->
+
+    <header>
+
+        <!--Skip nav link for accessability-->
+
+        <a class="skipNavLink" href="#main-content">
+            skip navigation
+        </a>
+
+        <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+        <h3 class="headerBrandName">HORIZON HOTELS</h3>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                {% if account_type == 'guest' %}
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="loginPage">Login/Register</a></li>
+                {% endif %} 
+
+                {% if account_type == 'standard' %}
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="basketPage">Basket</a></li>
+                <li><a href="userAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+                {% endif %} 
+
+                {% if account_type == 'admin' %}
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="adminAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+                {% endif %} 
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <main id="main-content">
+
+    <!--Gap/Space beneath nav-->
+    <div class="navGap"><br></div>
+
+    <section class="searchArea">
+	        <h1>{{location}}</h1>	     
+        
+        <div class="searchDetailsImgDiv">
+            <!--static/css/Images/manWatchingHorizon.jpg-->
+            <img class="searchDetailsImg" src={{image_link}} alt="website sketches">
+
+
+            <!--<img src="{{url_for('static', filename='css/Images/Aberdeen.jpg')}}" alt="website sketches">-->
+        </div>
+    </section>
+
+    <section class="searchDetailsSection">
+        <table>
+            <tr>
+                <th>LOCATION:</th>
+                <td>{{location}}</td>
+            </tr>
+            <tr>
+                <th>STANDARD ROOMS:</th>
+                <td>{{numStandard}}</td>
+            </tr>
+            <tr>
+                <th>DOUBLE ROOMS (1 Guest):</th>
+                <td>{{numDouble}}</td>
+            </tr>
+            <tr>
+                <th>DOUBLE ROOMS (2 Guests):</th>
+                <td>{{numDouble2}}</td>
+            </tr>
+            <tr>
+                <th>FAMILY ROOMS:</th>
+                <td>{{numFamily}}</td>
+            </tr>
+            <tr>
+                <th>CHECK-IN DATE:</th>
+                <td>{{checkIn}}</td>
+            </tr>
+            <tr>
+                <th>CHECK-OUT DATE:</th>
+                <td>{{checkOut}}</td>
+            </tr>
+            <tr>
+                <th>TOTAL NIGHTS BOOKED:</th>
+                <td>{{total_days_booked}}</td>
+            </tr>
+            {% if currency == 'gbp' %}
+                <tr>
+                    <th>TOTAL COST (Before Discount):</th>
+                    <td>£{{total_price_of_stay_before_discount}}0</td>
+                </tr>
+                <tr>
+                    <th>TOTAL COST (Discount Applied):</th>
+                    <td>£{{total_price_of_stay_with_discount}}0</td>
+                </tr>
+            {% endif %}
+            {% if currency == 'usd' %}
+                <tr>
+                    <th>TOTAL COST (Before Discount):</th>
+                    <td>${{total_price_of_stay_before_discount}}0</td>
+                </tr>
+                <tr>
+                    <th>TOTAL COST (Discount Applied):</th>
+                    <td>${{total_price_of_stay_with_discount}}0</td>
+                </tr>
+            {% endif %}
+            {% if currency == 'euro' %}
+                <tr>
+                    <th>TOTAL COST (Before Discount):</th>
+                    <td>&euro;{{total_price_of_stay_before_discount}}0</td>
+                </tr>
+                <tr>
+                    <th>TOTAL COST (Discount Applied):</th>
+                    <td>&euro;{{total_price_of_stay_with_discount}}0</td>
+                </tr>
+            {% endif %}
+        </table>
+        {% if account_type == 'guest' or account_type == 'standard' %}
+        <div class="paymentButton">
+            <!-- <p class="error_message" id="login_required_error">Login Required: <a href="loginPage">Login/Register</a></p> -->
+            <p class="error_message" id="login_required_error">{{login_error_html}}<a href="loginPage">{{login_link_html}}</a></p>
+            <a href="paymentPage"><button type="button">Proceed To Payment</button></a>
+        </div>
+        {% endif %} 
+    </section>
+
+    </main>
+
+{% endblock %}

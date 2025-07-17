@@ -1,0 +1,84 @@
+<!--Horizon Hotels userAccountPage.html 
+***REMOVED***
+***REMOVED*** -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+<div class="aboutUsPageBody">
+
+    <!--Navbar-->
+
+    <header>
+
+        <!--Skip nav link for accessability-->
+
+        <a class="skipNavLink" href="#main-content">
+            skip navigation
+        </a>
+
+        <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+        <h3 class="headerBrandName">HORIZON HOTELS</h3>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="basketPage">Basket</a></li>
+                <li><a href="userAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <main id="main-content">
+
+    <!--Gap/Space beneath nav-->
+    <div class="navGap"><br></div>
+        
+    <section class="aboutUsSection">
+        <h1>Your Account</h1>
+    </section>
+    <section class="aboutUsPoints">
+        <div>
+            <h2>Personal Details</h2>
+            <p>First Name: {{first_name}}</p> 
+            <p>Last Name: {{last_name}}</p>
+            <p>Email: {{email}}</p>
+        </div>
+        <div>
+            <form method="post" action="/changePersonalDetailsPage">
+                <input type="hidden" name="first_name" value="{{first_name}}">
+                <input type="hidden" name="last_name" value="{{last_name}}">
+                <input type="hidden" name="email" value="{{email}}">
+                <button type="submit" class="view_booking_details">Change Personal Details</button>
+            </form>
+        </div>
+    </section>
+    <section class="aboutUsSection">
+        <h1 class="bookingInfoHeader">Your Bookings</h1>
+        {% if are_there_bookings == 'false' %}
+            <h2 class="bookingInfoHeader2">You have no bookings</h2>
+        {% endif %}
+        {% if are_there_bookings == 'true' %}
+            {% for booking_id in bookings %}
+                <form method="post" action="/bookingDetailsPage">
+                    <input type="hidden" name="booking_id" value="{{booking_id}}">
+                    <h2 class="bookingInfoHeader2">Booking #{{booking_id}}: <button type="submit" class="view_booking_details">View Booking Details</button></h2>
+                </form>
+            {% endfor %}
+        {% endif %}
+   
+    <div class="aboutUsBottomGap"></div>
+
+</div>
+
+{% endblock %}
+    

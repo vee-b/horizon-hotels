@@ -1,0 +1,954 @@
+/* Horizon Hotels CSS 
+***REMOVED*** */
+
+/* Colour Palette (From https://coolors.co/):
+Dark Orange (Mahogony): RGB 188, 74, 11... HEX BC4A0B
+Light Orange (Persimmon): RGB 233, 94, 13... HEX E95E0D
+Light Blue (Cyan Process): RGB 90, 185, 226... HEX 5AB9E2
+Dark Blue (Star Command Blue): RGB 27, 117, 171... HEX 1B75AB
+Dark Grey (Raisin Black): RGB 34, 35, 39... HEX 222327
+*/
+
+:root {
+    --darkGrey: rgba(34, 35, 39, 0.95);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Skip Nav Link styles*/
+
+.skipNavLink {
+    background: black;
+    color: white;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0 0 0.25rem 0.25rem;
+    position: absolute;
+    right: 0.5rem;
+    transform: translateY(-120%);
+    transition: transform 325ms ease-in;
+}
+
+.skipNavLink:focus {
+    transform: translateY(0)
+}
+
+/* Body styles*/
+
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+/* Navbar styles */
+
+.HHLogo {
+    width: 140px;
+    height: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.headerBrandName {
+    color: #E95E0D;
+    white-space: nowrap;
+}
+
+header {
+    background: var(--darkGrey);
+    text-align: center;
+    position: fixed;
+    border-bottom: 2px solid white;
+    margin: 0;
+    z-index: 999;
+    width: 100%;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+.nav-toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 1em;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: white;
+    height: 2px;
+    width: 2em;
+    border-radius: 2px;
+    position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    content: '';
+    position: absolute;
+}
+
+.nav-toggle-label span::before {
+    bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+    top: 7px;
+}
+
+nav {
+    position: absolute;
+    text-align: left;
+    top: 100%;
+    left: 0;
+    background: var(--darkGrey);
+    width: 100%;
+    transform: scale(1,0);
+    transform-origin: top;
+    transition: transform 400ms ease-in-out;
+}
+
+nav ul {
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    margin-bottom: 1em;
+    margin-left: 1em;
+    white-space: nowrap;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    opacity: 0;
+    transition: opacity 150ms ease-in-out;
+}
+
+nav a:hover {
+    color: #E95E0D;
+}
+
+.nav-toggle:checked ~ nav {
+    transform: scale(1,1);
+}
+
+.nav-toggle:checked ~ nav a {
+    opacity: 1;
+    transition: opacity 250ms ease-in-out 250ms;
+}
+
+@media screen and (min-width: 800px) {
+    .nav-toggle-label {
+        display: none;
+    }
+
+    header {
+        display: grid;
+        grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+    }
+
+    .HHLogo {
+        grid-column: 2 / 3;
+    }
+
+    nav {
+        all: unset;
+        grid-column: 3 / 4;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    nav ul {
+        display: flex;
+        margin-top: 0;
+    }
+
+    nav li {
+        margin-left: 3em;
+        margin-bottom: 0;
+    }
+
+    nav a {
+        opacity: 1;
+        position: relative;
+    }
+
+    nav a::before {
+        content: '';
+        display: block;
+        height: 5px;
+        background: var(--darkGrey);
+        position: absolute;
+        bottom: -1.3em;
+        left: 0;
+        right: 0;
+        transform: scale(0,1);
+        transition: transform ease-in-out 250ms;
+    }
+
+    nav a:hover::before {
+        transform: scale(1,1);
+    }
+}
+
+/*Brand Name styles*/
+
+.brandName {
+    display: block;
+    text-transform: uppercase;
+    position: fixed;
+    color: #E95E0D;
+    text-decoration: white;
+    margin-left: 0;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    padding: 20px;
+    width: 340px;
+    border-top: 5px solid white;
+    border-bottom: 5px solid white;
+    border-right: 5px solid white;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+
+/*...SEARCH PAGE STYLES...*/
+
+/*Mobile View*/
+
+.searchArea {
+    background-color: #E95E0D;
+    background-color: #d6f0f7;
+    background-color: #ffeacd;
+    background-color: rgba(34,30,34,255);
+    background-color: rgba(103,110,107,255);
+    color: #FFF;
+    margin-top: 40px;
+}
+
+.searchArea img {
+    max-width: 100%;
+    padding: 0 10px;
+    padding-bottom: 20px;
+    -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 30%);
+    mask-image: linear-gradient(to left, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.searchArea h1 {
+    text-align: center;
+    font-size: 3rem;
+    color: #E95E0D;
+    color: white;
+    font-weight: normal;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+h1, p {
+    margin: 0;
+}
+
+/*Search Form Styles*/
+
+.searchForm {
+    padding-left: 2%;
+    padding-bottom: 2%;
+    color: black;
+    color: #FFF;
+}
+
+.searchForm h2 {
+    padding-left: 10px;
+    font-weight: normal;
+}
+
+.searchForm div {
+    max-width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+form input,
+form select {
+	padding: 5px;
+	font-size: 15px;
+	border: 0; 
+	margin: 5px;
+    border-radius: 500px;
+    cursor: pointer;
+}
+
+form label {
+    margin-left: 10px;
+    font-size: 1rem;
+    font-weight: normal;
+}
+
+.searchFormDiv button[type="submit"] {
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 17px;
+	border-radius: 500px;
+	text-align: center;
+	cursor: pointer;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 5px;
+    color: #FFF;
+    background-color: rgba(34,30,34,255);
+	transition: .3s ease background-color;
+    transition: .3s ease color;
+}
+
+button[type="submit"]:hover {
+	background-color: #E95E0D;
+    color: rgba(34,30,34,255);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/*New Doors Section Styles*/
+
+.newDoorsSection {
+    background-color: rgba(82,126,139,255);
+    background-image: url("Images/blueHills.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    background-position: right;
+    color: #FFF;
+}
+
+.newDoorsSection h1 {
+    text-align: right;
+    margin-left: auto;
+    font-size: 1.8rem;
+    font-weight: lighter;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.newDoorsSection h2, .newDoorsSection p {
+    width: 55%;
+    margin-left: auto;
+    padding-right: 20px;
+    text-align: right;
+}
+
+.newDoorsSection p {
+    padding-bottom: 20px;
+}
+
+/*Quality Section Styles*/
+
+.qualitySection {
+    background-color: rgba(127,107,95,255);
+    color: #FFF
+}
+
+.qualitySection h1 {
+    text-align: right;
+    margin-left: auto;
+    font-size: 1.8rem;
+    font-weight: lighter;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 10px;
+}
+
+.qualitySection h2, .qualitySection p {
+    width: 55%;
+    margin-left: auto;
+    padding-right: 20px;
+    text-align: right;
+}
+
+.qualitySection p {
+    padding-bottom: 20px;
+}
+
+.reviews {
+    color: rgba(255,221,166,255);
+}
+
+.stars {
+    width: 55%;
+    margin-left: auto;
+    text-align: right;
+    padding: 10px;
+    padding-right: 20px;
+}
+
+.checked {
+    color: orange;
+}
+
+/*Media Queries &/or Desktop View*/
+
+@media (min-width: 1000px) {
+
+    .searchArea img {
+        max-width: 70%;
+        margin-left: 15%;
+        
+    }
+
+    .searchDetailsImgDiv .searchDetailsImg {
+        max-width: 100%;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .searchArea h1 {
+        padding-top: 40px;
+        padding-bottom: 30px;
+    }
+    
+    /*Search Form Styles*/
+    
+    .searchForm {
+        padding-top: 60px;
+        padding-left: 10%;
+    }
+
+    .searchForm {
+        top: 25%;
+        padding-left: 2%;
+        color: black;
+        color: #FFF;
+        z-index: 100;
+        position: fixed;
+    }
+
+    /*New Doors Section Styles*/
+
+    .newDoorsSection {
+        display: flex;
+        align-items: center;
+    }
+
+    .newDoorsSection div {
+        max-width: 100%;
+    }
+
+    .mindDiv {
+        margin-right: 15%;
+    }
+
+    .doorsDiv {
+        margin-left: 10%;
+    }
+
+    /*Quality Section Styles*/
+
+    .qualitySection {
+        padding-top: 50px;
+        padding-bottom: 80px;
+    }
+
+    .qualitySection h1 {
+        padding-right: 15%;
+    }
+
+    .qualitySection h2, .qualitySection p {
+        padding-right: 15%;
+    }
+
+    .reviews {
+        color: rgba(255,221,166,255);
+    }
+
+    .stars {
+        padding-right: 15%;
+    }
+
+}
+
+
+
+
+
+/*...SEARCH DETAILS PAGE STYLES...*/
+
+/*Mobile View*/
+
+/*Search Form Styles*/
+
+.searchDetailsSection {
+    background-color: rgba(127,107,95,255);
+    background-color: rgba(103,110,107,255);
+    /* background-image: url("Images/blueHills.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    background-position: right;
+    color: rgba(255,221,166,255);
+    color: #FFF;
+    font-weight: bold;
+}
+
+.searchDetailsSection h1 {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: lighter;
+    padding-top: 20px;
+    padding-right: 20px;
+    padding-bottom: 30px;
+}
+
+.searchDetailsSection p {
+    text-align: center;
+    padding: 5px 0;
+}
+
+.searchDetailsSection button {
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 17px;
+	border-radius: 500px;
+	text-align: center;
+	cursor: pointer;
+    margin-top: 15px;
+    color: #FFF;
+    background-color: rgba(34,30,34,255);
+	transition: .3s ease background-color;
+    transition: .3s ease color;
+}
+
+.paymentButton {
+    text-align: center
+}
+
+.paymentButton .error_message {
+    font-size: 1rem;
+    color: rgb(94, 0, 0);;
+}
+
+.paymentButton a {
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.paymentButton a:hover {
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    color: black;
+}
+
+button:hover {
+	background-color: #E95E0D;
+    color: rgba(34,30,34,255);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+
+/*Media Queries &/or Desktop View*/
+
+@media (min-width: 900px) {
+    
+    /*Search Form Styles*/
+
+  
+}
+
+
+
+
+
+
+/*...ABOUT US PAGE STYLES...*/
+
+/*Mobile View*/
+
+.aboutUsPageBody {
+    background-color: rgba(103,110,107,255);
+    min-height: 100vh;
+}
+
+.aboutUsSection {
+    margin-top: 40px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.aboutUsSection h1 {
+    font-size: 3rem;
+    color: rgba(34,30,34,255);
+    color: #FFF;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    max-width: 60%;
+}
+
+.aboutUsSection h2 {
+    color: #FFF;
+}
+
+.aboutUsSection p {
+    padding-bottom: 20px;
+    color: #FFF;
+}
+
+.aboutUsPoints {
+    text-align: center;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    background-color: rgba(127,107,95,255);
+    /* background-image: url("Images/blueHills.jpg");
+    background-size: cover; */
+    color: rgba(255,221,166,255);
+    border: rgb(46, 163, 179, 0.9) solid 20px;
+    background-color: rgb(46, 163, 179, 0);;
+    color: #FFF;
+}
+
+.aboutUsSection .bookingInfoHeader {
+    margin-top: 0;
+    padding-top: 15px;
+    color: #FFF;
+}
+
+.aboutUsSection .bookingInfo {
+    color: #FFF;
+    text-align: center;
+    margin: 0;
+    max-width: 100%;
+}
+
+.bookingInfoHeader2 {
+    color: #FFF;
+    text-align: center;
+}
+
+table, th, td {
+    color: #FFF;
+    border: rgba(103,110,107,255) solid 5px;
+    border-collapse: collapse;
+    margin: 0 auto;
+}
+
+th, td {
+    padding: 20px;
+    text-align: center;
+}
+
+th {
+    background-color: rgb(46, 163, 179, 0);
+}
+
+tr:nth-child(odd) {
+    background-color: rgb(46, 163, 179, 0.4);
+  }
+
+tr:nth-child(even) {
+    background-color: rgb(46, 163, 179, 0.9);
+}
+
+.aboutUsBottomGap {
+    background-color: rgba(103,110,107,255);
+    padding: 10px;
+}
+
+ul {
+    text-align: left;
+}
+
+/*Media Queries &/or Desktop View*/
+
+@media (min-width: 900px) {
+    .aboutUsSection {
+        padding-left: 20%;
+        padding-right: 20%;
+    }
+
+    .aboutUsPoints {
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 40px;
+        max-width: 50%;
+        gap: 100px;
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+
+    .aboutUsSection .bookingInfoHeader {
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .aboutUsSection .bookingInfo {
+        text-align: center;
+        margin: 0 auto;
+        max-width: 60%;
+    }
+
+}
+
+
+
+
+
+
+/*...LOGIN/REGISTER PAGE STYLES...*/
+
+/*Mobile View & Desktop View*/
+
+.loginRegisterPageBody {
+    background-image: url("Images/blueHills.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    background-position: right;
+}
+
+.loginRegisterFormDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.loginRegisterForm {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    padding-bottom: 50px;
+    min-height: 250px;
+}
+
+.loginRegisterFormDiv input {
+    display: block;
+    outline: none;
+    padding: 15px, 10px;
+    margin: 30px;
+    border: 1px solid transparent;
+    border-radius: 0;
+    background: none;
+    color: #FFF;
+    width: 200px;
+    transition: .3s ease border-color;
+}
+
+.loginRegisterFormDiv input:focus {
+    border-color: #E95E0D;
+}
+
+.loginRegisterFormDiv button {
+    padding: 10px;
+    color: #FFF;
+    background: #E95E0D;
+    border: none;
+    width: 200px;
+    margin-left: 30px;
+    cursor: pointer;
+    transition: .3s ease background-color;
+}
+
+.loginRegisterFormDiv button:hover {
+	background-color: rgba(34,30,34,255);
+}
+
+.loginRegisterFormDiv a {
+    color: #FFF;
+    text-decoration: none;
+    display: block;
+    margin: 15px;
+    text-align: center;
+    transition: .3s ease color;
+}
+
+.loginRegisterFormDiv p {
+    color: #FFF;
+    text-align: center;
+}
+
+.loginRegisterFormDiv .payment_labels {
+    text-align: left; 
+    margin-left: 35px;
+    padding-bottom: 0;
+}
+
+.loginRegisterFormDiv a:hover {
+    color: #E95E0D;
+}
+
+.action {
+    color: #FFF;
+    text-align: center;
+    font-size: 18px;
+    margin: 30px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.logoutButton {
+    margin: 0 auto;
+}
+
+.line {
+    padding-bottom: 5px;
+    border-bottom: 2px solid #E95E0D;
+}
+
+.loginRegisterFormDiv .error_message {
+    font-size: 0.7rem;
+    color: rgb(255, 0, 0);
+}
+
+/*Media Queries &/or Desktop View*/
+
+@media (min-width: 900px) {
+    .bookingFormDesktopDisplay{
+        width: 200px;
+    }    
+}
+
+
+
+/*...PAYMENT/BASKET PAGE STYLES...*/
+
+/*Mobile View*/
+
+.paymentPageBody {
+    background-image: url("#");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    min-height: 100vh;
+    background-position: right;
+}
+
+.paymentSection {
+    margin-top: 40px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.paymentSection h1 {
+    font-size: 2rem;
+    color: rgba(34,30,34,255);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    background-color: #E95E0D;
+    background-image: url("Images/blueHills.jpg");
+    max-width: 60%;
+}
+
+.paymentSection p {
+    padding-bottom: 20px;
+}
+
+.paymentConfirmationPageBody {
+    background-color: rgba(103,110,107,255);
+    height: 100vh;
+    overflow: auto;
+}
+
+
+
+/*Media Queries &/or Desktop View*/
+
+@media (min-width: 900px) {
+
+}
+
+
+
+
+/*...USER ACCOUNT PAGE STYLES...*/
+
+/*Mobile View*/
+
+.view_booking_details {
+    border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 17px;
+	border-radius: 500px;
+	text-align: center;
+	cursor: pointer;
+    margin: 0;
+    margin-top: 10px;
+    margin-left: 5px;
+    color: #FFF;
+    background-color: rgba(34,30,34,255);
+	transition: .3s ease background-color;
+    transition: .3s ease color;
+}
+
+.cancel_button_div {
+    text-align: center;
+}
+
+.cancel_booking {
+    border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 17px;
+	border-radius: 500px;
+	text-align: center;
+	cursor: pointer;
+    margin-top: 10px;
+    margin-left: 5px;
+    color: #FFF;
+    background-color: rgba(34,30,34,255);
+	transition: .3s ease background-color;
+    transition: .3s ease color;
+}
+
+.cancel_button_div .error_message {
+    font-size: 1rem;
+    color: rgb(94, 0, 0);
+    font-weight: bold;
+}
+
+.cancel_button_div a {
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+}
+
+.cancel_button_div a:hover {
+    font-size: 1rem;
+    color: white;
+    text-decoration: none;
+    color: black;
+}

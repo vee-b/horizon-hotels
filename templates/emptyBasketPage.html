@@ -1,0 +1,181 @@
+<!--Horizon Hotels emptyBasketPage.html 
+***REMOVED***
+***REMOVED*** -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+    <!--Navbar-->
+
+    <header>
+
+        <!--Skip nav link for accessability-->
+
+        <a class="skipNavLink" href="#main-content">
+            skip navigation
+        </a>
+
+        <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+        <h3 class="headerBrandName">HORIZON HOTELS</h3>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                {% if account_type == 'guest' %}
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="loginPage">Login/Register</a></li>
+                {% endif %} 
+
+                {% if account_type == 'standard' %}
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="basketPage">Basket</a></li>
+                <li><a href="userAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+                {% endif %} 
+
+                {% if account_type == 'admin' %}
+                <li><a href="logoutPage">Logout</a></li>
+                {% endif %} 
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <main id="main-content">
+
+    <!--Gap/Space beneath nav-->
+    <div class="navGap"><br></div>
+
+    <section class="searchArea">
+	    <h1>Basket Is Empty...<br>Please Run A Search</h1>   
+        
+        <div class="searchDetailsImgDiv">
+            <!--static/css/Images/manWatchingHorizon.jpg-->
+            <img src="{{url_for('static', filename='css/Images/manWatchingHorizon.jpg')}}" alt="website sketches">
+        </div>
+        <div class="searchFormDiv">
+            <form class="searchForm" action="/searchResultsPage" method="POST">
+                <h2>Search For Your <br/> New Horizon:</h2>
+                <div>
+                    <label for="location"> Location: </label>
+                    <select id="location" name="location">
+                        {% for CITY in locations %}
+	                        <option value="{{CITY}}"> {{CITY}} </option>	    
+	                    {% endfor %} 
+                    </select>
+                </div>
+                <div>
+                    {{location}}
+                    <label for="checkIn"> Check In: </label>
+                    <input type="date" name="checkIn" id="startdate" onchange="setenddate()" required>
+                </div>
+               
+                <div>
+                    <label for="checkOut"> Check Out: </label>
+                    <input type="date" name="checkOut" id="enddate" required>
+                </div>
+                <div>
+                    <label for="standard"> Standard Rooms: </label>
+                    <input type="number" id="standard" onchange="set_max_rooms()" name="standard" value="0" min="0" max={{num_of_standard}}>
+                </div> 
+                <div>
+                    <label for="double"> Double Rooms (1 Guest): </label>
+                    <input type="number" id="double" onchange="set_max_rooms()" name="double" value="0" min="0" max={{num_of_double}}> 
+                </div>
+                <div>
+                    <label for="double2"> Double Rooms (2 Guests): </label>
+                    <input type="number" id="double2" onchange="set_max_rooms()" name="double2" value="0" min="0" max={{num_of_double2}}> 
+                </div>
+                <div>
+                    <label for="family"> Family Rooms: </label>
+                    <input type="number" id="family" onchange="set_max_rooms()" name="family" value="0" min="0" max={{num_of_family}}>                           
+                </div>
+                <div>
+                    <label for="currency"> Currency: </label>
+                    <select id="currency" name="currency">
+	                    <option value="gbp"> GBP </option>
+                        <option value="usd"> USD </option>
+                        <option value="euro"> Euros </option>	    	                 
+                    </select>                           
+                </div>
+                <div>
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    </main>
+
+
+
+
+    <script>
+        // Date input validation
+        window.onload = function initialdate() {
+            var today=new Date();
+            var year = today.getFullYear();
+            var month = today.getMonth() + 1;
+            var day = today.getDate();       
+            if (month < 10) {
+                month = '0' + month; 
+            }
+            if (day < 10) {
+                day = '0' + day; 
+            }
+            today = year + '-' + month + '-' + day;           
+            document.getElementById("startdate").min = today;  
+
+            var three_months_on = new Date();
+            three_months_on.setMonth(three_months_on.getMonth() + 3);
+            var year = three_months_on.getFullYear();
+            var month = three_months_on.getMonth() + 1;
+            var day = three_months_on.getDate();       
+            if (month < 10) {
+                month = '0' + month; 
+            }
+            if (day < 10) {
+                day = '0' + day; 
+            }
+            three_months_on = year + '-' + month + '-' + day; 
+
+            document.getElementById("startdate").max = three_months_on;        
+        }
+
+        function setenddate() {
+            var selectedstartdate = document.getElementById("startdate").value;
+            document.getElementById("enddate").min = selectedstartdate;
+        }
+
+        document.getElementById('location').addEventListener('click', load_standard_rooms);
+
+        function load_standard_rooms() {
+            var city = document.getElementById('location').value;           
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', '/room_capacity?location=' + city);  
+
+            xhr.onload = function set_max_rooms() {
+                if(this.status == 200) {
+                    document.getElementById('standard').max = JSON.parse(this.responseText)['num_of_standard'];                   
+                    document.getElementById('double').max = JSON.parse(this.responseText)['num_of_double'];                   
+                    document.getElementById('double2').max = JSON.parse(this.responseText)['num_of_double2'];           
+                    document.getElementById('family').max = JSON.parse(this.responseText)['num_of_family'];
+                   
+                }
+                else {
+                    
+                }
+            }
+            xhr.send();
+        }
+    </script>
+
+{% endblock %}

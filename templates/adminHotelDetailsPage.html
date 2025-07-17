@@ -1,0 +1,85 @@
+<!--Horizon Hotels adminHotelDetailsPage.html 
+***REMOVED***
+***REMOVED*** -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+<div class="loginRegisterPageBody">
+
+    <!--Navbar-->
+
+    <header>
+
+        <!--Skip nav link for accessability-->
+
+        <a class="skipNavLink" href="#main-content">
+            skip navigation
+        </a>
+
+        <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+        <h3 class="headerBrandName">HORIZON HOTELS</h3>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="adminAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <main id="main-content">
+
+    <!--Gap/Space beneath nav-->
+    <div class="navGap"><br></div>
+        
+    <section class="aboutUsSection">
+
+        <div class="loginRegisterFormDiv">
+            <form class="loginRegisterForm" action="/changeHotelDetailsPage" method="POST">
+                <div class="action">
+                    <a class="line" style="display: inline;">Hotel #{{hotel_id}}</a>
+                </div>
+                <div>
+                    <input type="hidden" name="hotel_id" value="{{hotel_id}}">
+                    <p class="payment_labels">LOCATION:</p>
+                    <input type="text" placeholder="Location" id="location" name="location" value={{location}} required/>
+                    <p class="payment_labels">ROOM CAPACITY:</p>
+                    <input type="text" placeholder="Room Capacity" id="room_capacity" name="room_capacity" value={{room_capacity}} required/>
+                    <p class="payment_labels">ON-PEAK SEASON PRICE:</p>
+                    <input type="text" placeholder="On-peak Season Price" id="on_peak" name="on_peak" value={{on_peak}} required/>
+                    <p class="payment_labels">OFF-PEAK SEASON PRICE:</p>
+                    <input type="text" placeholder="Off-peak Season Price" id="off_peak" name="off_peak" value={{off_peak}} required/>
+                    
+                    <button id="submit" onclick="confirm_admin_changes()">Update Details</button> <br>
+                </div>
+            </form>
+        </div>
+    </section>
+
+</div>
+
+<script>
+    function confirm_admin_changes() {
+        var result = confirm('Are you sure you would like to apply these changes?')
+        if (result == false) {
+            event.preventDefault();
+        }
+    }
+</script>
+   
+    <div class="aboutUsBottomGap"></div>
+
+</div>
+
+{% endblock %}
+    

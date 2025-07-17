@@ -1,0 +1,93 @@
+<!--Horizon Hotels adminBookingsPage.html 
+***REMOVED***
+***REMOVED*** -->
+
+{% extends 'base.html' %}
+
+{% block head %} 
+{% endblock %}
+
+{% block body %} 
+
+<div class="aboutUsPageBody">
+
+    <!--Navbar-->
+
+    <header>
+
+        <!--Skip nav link for accessability-->
+
+        <a class="skipNavLink" href="#main-content">
+            skip navigation
+        </a>
+
+        <!--<img src="Images/HHLogo.svg" alt="HHLogo" class="HHLogo">-->
+        <h3 class="headerBrandName">HORIZON HOTELS</h3>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <nav>
+            <ul>
+                <li><a href="searchPage">Search</a></li>
+                <li><a href="aboutUsPage">About Us</a></li>
+                <li><a href="adminAccountPage">Account</a></li>
+                <li><a href="logoutPage">Logout</a></li>
+            </ul>
+        </nav>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+        </label>
+    </header>
+
+    <main id="main-content">
+
+    <!--Gap/Space beneath nav-->
+    <div class="navGap"><br></div>
+        
+    <section class="aboutUsSection">
+        <h1>Bookings</h1>
+    </section>
+    <section class="aboutUsSection">
+        <div>
+            <table>
+                <tr>
+                    <th>Booking ID</th>
+                    <th>Check-in Date</th>
+                    <th>Check-out Date</th>
+                    <th>Admin Activities</th>
+                </tr>               
+                {% for dict_item in bookings %}
+                    <tr>
+                        <td>Booking #{{dict_item['BOOKING_ID']}}</td>
+                        <td>{{dict_item['CHECK_IN_DATE']}}</td>
+                        <td>{{dict_item['CHECK_OUT_DATE']}}</td>
+                        <td>
+                            <form style="display: inline;" method="post" action="/adminBookingDetailsPage">
+                                <input type="hidden" name="booking_id" value="{{dict_item['BOOKING_ID']}}">
+                                <button type="submit" class="view_booking_details">Booking Details</button>
+                            </form>
+                            <form style="display: inline;" method="post" action="/adminDeleteBookingPage">
+                                <input type="hidden" name="booking_id" value="{{dict_item['BOOKING_ID']}}">
+                                <button type="submit" class="view_booking_details" onclick="confirm_admin_changes()">Delete Booking</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}                
+            </table>
+        </div>
+    </section>
+   
+    <div class="aboutUsBottomGap"></div>
+
+</div>
+
+
+<script>
+    function confirm_admin_changes() {
+        var result = confirm('Are you sure you would like to delete this booking?')
+        if (result == false) {
+            event.preventDefault();
+        }
+    }
+</script>
+
+{% endblock %}
+    
