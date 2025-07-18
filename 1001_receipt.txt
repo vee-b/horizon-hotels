@@ -1,0 +1,12 @@
+Booking ID: 1001
+Location: Edinburgh
+Standard Rooms: 0
+Double Rooms: 1
+Double2 Rooms: 2
+Family Rooms: 0
+Check-in Date: 2025-07-18
+Check-out Date: 2025-08-09
+Total Nights Booked: 23
+Total Price (without discount): 13984.00
+Total Price (discounted): 13984.00
+Currency: gbp
