@@ -1,18 +1,25 @@
 import mysql.connector
 from mysql.connector import errorcode
+from dotenv import load_dotenv
+import os
  
+# Load variables from .env file
+load_dotenv()
+
 # MYSQL CONFIG VARIABLES
-hostname    = "***REMOVED***"
-username    = "***REMOVED***"
-***REMOVED***  = "***REMOVED***"
-database = "HORIZON_HOTELS"
+hostname = os.getenv("DB_HOST")
+username = os.getenv("DB_USER")
+***REMOVED*** = os.getenv("DB_PASSWORD")
+database = os.getenv("DB_NAME")
 
 def getConnection():    
     try:
-        conn = mysql.connector.connect(host=hostname,                              
-                              user=username,
-                              ***REMOVED***=***REMOVED***,
-                              database = 'HORIZON_HOTELS')  
+        conn = mysql.connector.connect(
+            host=hostname,                              
+            user=username,
+            ***REMOVED***=***REMOVED***,
+            database=database
+            )  
     except mysql.connector.Error as err:
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
             print('User name or Password is not working')

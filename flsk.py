@@ -1,7 +1,5 @@
 '''
 Horizon Hotels Flask app 
-***REMOVED***
-***REMOVED*** 
 '''
 
 from datetime import date, datetime, timedelta
@@ -11,6 +9,17 @@ from passlib.hash import sha256_crypt
 import pandas
 import mysql.connector, getConnection
 from flask import Flask, jsonify, redirect, render_template, request, url_for, session 
+from dotenv import load_dotenv
+import os
+
+# Load variables from .env file
+load_dotenv()
+
+# MYSQL CONFIG VARIABLES
+hostname = os.getenv("DB_HOST")
+username = os.getenv("DB_USER")
+***REMOVED*** = os.getenv("DB_PASSWORD")
+database = os.getenv("DB_NAME")
 
 app = Flask(__name__)
 app.secret_key = 'SecretString'
