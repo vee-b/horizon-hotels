@@ -36,7 +36,7 @@ python flsk.py
 
 Once the app is running, open your browser and go to:
 
-[http://***REMOVED***:5000/searchPage](http://***REMOVED***:5000/searchPage)
+[http://127.0.0.1:5000/searchPage](http://127.0.0.1:5000/searchPage)
 
 
 > ⚠️ Requires **Python 3.9+**

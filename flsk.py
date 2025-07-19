@@ -18,7 +18,7 @@ load_dotenv()
 # MYSQL CONFIG VARIABLES
 hostname = os.getenv("DB_HOST")
 username = os.getenv("DB_USER")
-***REMOVED*** = os.getenv("DB_PASSWORD")
+password = os.getenv("DB_PASSWORD")
 database = os.getenv("DB_NAME")
 
 app = Flask(__name__)
@@ -338,7 +338,7 @@ def render_loginPage():
 
 	if request.method == 'POST':
 		email = request.form['email']
-		***REMOVED*** = request.form['***REMOVED***']
+		password = request.form['password']
 
 		# Check database for email
 
@@ -358,16 +358,16 @@ def render_loginPage():
 				rows = dbcursor.fetchall()      
 				# If email is not already in database     
 				if dbcursor.rowcount <= 0:  
-					email_***REMOVED***_html = 'Incorrect Email/***REMOVED***'
-					return render_template("loginPage.html", email_***REMOVED***_html=email_***REMOVED***_html)  
+					email_password_html = 'Incorrect Email/password'
+					return render_template("loginPage.html", email_password_html=email_password_html)  
 				else:
 					# If email is currently in database
-					# Check ***REMOVED*** matches email
-					# Fetch ***REMOVED*** hash
+					# Check password matches email
+					# Fetch password hash
 					Verify_Password_Query = 'SELECT PASSWORD_HASH FROM ' + TABLE_NAME + ' WHERE EMAIL = %s;'
 					dbcursor.execute(Verify_Password_Query,(email,))
-					fetched_***REMOVED***_hash = dbcursor.fetchall()
-					***REMOVED***_hash = str(fetched_***REMOVED***_hash).strip("[(',)]")
+					fetched_password_hash = dbcursor.fetchall()
+					password_hash = str(fetched_password_hash).strip("[(',)]")
 
 					# Fetch account_type
 					Fetch_Account_Type_Query = 'SELECT ACCOUNT_TYPE FROM ' + TABLE_NAME + ' WHERE EMAIL = %s;'
@@ -381,12 +381,12 @@ def render_loginPage():
 					account_holder_id = str(fetched_account_holder_id).strip("[(',)]")
 			
 					# Verify hash        
-					***REMOVED***_verification = sha256_crypt.verify(***REMOVED***, ***REMOVED***_hash)
+					password_verification = sha256_crypt.verify(password, password_hash)
 
-					# If ***REMOVED*** doesn't match, display error message 
-					if ***REMOVED***_verification == False:
-						email_***REMOVED***_html = 'Incorrect Email/***REMOVED***'
-						return render_template("loginPage.html", email_***REMOVED***_html=email_***REMOVED***_html)
+					# If password doesn't match, display error message 
+					if password_verification == False:
+						email_password_html = 'Incorrect Email/password'
+						return render_template("loginPage.html", email_password_html=email_password_html)
 					else:
 						# Create session
 						session['logged_in'] = True
@@ -420,10 +420,10 @@ def render_registerPage():
 
 	if request.method == 'POST':
 		email = request.form['email']
-		***REMOVED*** = request.form['***REMOVED***']
+		password = request.form['password']
 		first_name = request.form['first_name']
 		last_name = request.form['last_name']
-		confirm_***REMOVED*** = request.form['confirm_***REMOVED***']
+		confirm_password = request.form['confirm_password']
 
 		conn = getConnection.getConnection()  
 		DB_NAME = 'HORIZON_HOTELS'             
@@ -446,14 +446,14 @@ def render_registerPage():
 				if dbcursor.rowcount > 0:   			
 					email_html = 'An account with that email already exists.'
 					return render_template("registerPage.html", email_html=email_html)
-				elif ***REMOVED*** != confirm_***REMOVED***:
-					***REMOVED***_html = 'The entered ***REMOVED*** fields do not match.'
-					return render_template("registerPage.html", ***REMOVED***_html=***REMOVED***_html)
+				elif password != confirm_password:
+					password_html = 'The entered password fields do not match.'
+					return render_template("registerPage.html", password_html=password_html)
 				else:
 					# If email is not currently in database, add user account details to database
 
-					# Create ***REMOVED*** hash
-					***REMOVED***_hashvalue = sha256_crypt.hash(***REMOVED***) 
+					# Create password hash
+					password_hashvalue = sha256_crypt.hash(password) 
 
 					# Select maximum account_holder_ID in current table
 					dbcursor.execute('SELECT ACCOUNT_HOLDER_ID FROM ' + TABLE_NAME)
@@ -462,7 +462,7 @@ def render_registerPage():
 					# Add 1 to the current max ID & assign it to the hotel_ID to be newly added 
 					ACCOUNT_HOLDER_ID = str(int(maxAccountHolderID[0]) + 1) 
 
-					dataset = (ACCOUNT_HOLDER_ID, first_name, last_name, email, ***REMOVED***_hashvalue, 'standard')      
+					dataset = (ACCOUNT_HOLDER_ID, first_name, last_name, email, password_hashvalue, 'standard')      
 					dbcursor.execute(INSERT_statement, dataset)   
 
 					conn.commit()              

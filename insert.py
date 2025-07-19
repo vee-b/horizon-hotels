@@ -13,9 +13,9 @@ def account_holder_table():
             print('MySQL Connection is established')                          
             dbcursor = conn.cursor()    #Creating cursor object
             dbcursor.execute('USE {};'.format(DB_NAME)) #use database       
-            ***REMOVED*** = 'admin'
-            ***REMOVED***_hashvalue = sha256_crypt.hash(***REMOVED***) 
-            dataset = [ (1000, 'Alice', 'Liddle', 'admin@hotmail.co.uk', ***REMOVED***_hashvalue, 'admin') ] 
+            password = 'admin'
+            password_hashvalue = sha256_crypt.hash(password) 
+            dataset = [ (1000, 'Alice', 'Liddle', 'admin@hotmail.co.uk', password_hashvalue, 'admin') ] 
             dbcursor.executemany(INSERT_statement, dataset) #multiple datasets  
             conn.commit()              
             print('INSERT query executed successfully.') 

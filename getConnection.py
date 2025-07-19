@@ -9,7 +9,7 @@ load_dotenv()
 # MYSQL CONFIG VARIABLES
 hostname = os.getenv("DB_HOST")
 username = os.getenv("DB_USER")
-***REMOVED*** = os.getenv("DB_PASSWORD")
+password = os.getenv("DB_PASSWORD")
 database = os.getenv("DB_NAME")
 
 def getConnection():    
@@ -17,7 +17,7 @@ def getConnection():
         conn = mysql.connector.connect(
             host=hostname,                              
             user=username,
-            ***REMOVED***=***REMOVED***,
+            password=password,
             database=database
             )  
     except mysql.connector.Error as err:
